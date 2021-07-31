@@ -5,8 +5,9 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import Landing from "./components/Landing.js"
 import Create from "./components/Create.js"
 import Options from "./components/Options.js"
-import Teachers from "./components/Teachers.js"
-import Courses from "./components/Courses.js"
+import TeacherTests from "./components/TeacherTests.js"
+import CourseTests from "./components/CourseTests.js"
+import Header from "./components/Header.js"
 
 export default function App(){
 
@@ -16,19 +17,24 @@ export default function App(){
             <GlobalStyle/>
             <Switch>
                 <Route path="/" exact>
+                    <Header/>
                     <Landing/>
                 </Route>
                 <Route path="/add-test" exact>
+                    <Header/>
                     <Create/>
                 </Route>
-                <Route path="/options" exact>
+                <Route path="/options/:majorId" exact>
+                    <Header/>
                     <Options/>
                 </Route>
-                <Route path="/teachers" exact>
-                    <Teachers/>
+                <Route path="/options/teachers/:teacherId/tests" exact>
+                    <Header/>
+                    <TeacherTests/>
                 </Route>
-                <Route path="/courses" exact>
-                    <Courses/>
+                <Route path="/options/courses/:courseId/tests" exact>
+                    <Header/>
+                    <CourseTests/>
                 </Route>
             </Switch>
         </Router>

@@ -1,16 +1,19 @@
 import styled from "styled-components"
+import {Link} from "react-router-dom"
 
-export default function Teacher(){
-    
+export default function Teacher({name , id, quantity}){
+
     return (
-        <Button>
-            Teacher
-        </Button>
+        <Link to= {`/options/teachers/${id}/tests`}>
+            <Button>
+                {name} ({quantity?quantity:0})
+            </Button>
+        </Link>
     )
 }
 
 export const Button = styled.button`
-    width:100px;
-    height: 50px;
-    background-color:orange;
+    width:150px;
+    height: 30px;
+    background-color:#908699;
 `;

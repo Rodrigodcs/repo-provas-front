@@ -1,48 +1,40 @@
 import styled from "styled-components"
 import axios from "axios"
-import {Link} from "react-router-dom"
+import { useEffect,useState } from "react"
+
+import Major from "./Major.js"
 
 export default function Landing(){
-    function testing(){
-        axios.get(`http://localhost:4000/4/teachers`).then(response =>{
+    const [majors,setMajors]=useState([])
+    useEffect(()=>{
+        axios.get(`http://localhost:4000/options/majors`).then(response =>{
         //axios.get(`https://repo-provas-back.herokuapp.com/test`).then((response)=>{
-            console.log(response.data)
+            setMajors(response.data)
         }).catch(err =>{
             console.log(err)
         })
+    },[])
+
+    if(!majors){
+        return <Wrapper>CARREGANDO</Wrapper>
     }
     return (
         <Wrapper>
-            <Button onClick={()=>testing()}>
-                    TESTAR
-            </Button>
-            <Link to="/add-test">
-                <Button>
-                    Adicionar
-                </Button>
-            </Link>
-            <Link to="/options">
-                <Button>
-                    Buscar
-                </Button>
-            </Link>
+            <h1>ESCOLHA UM CURSO</h1>
+            {majors.map(major=> <Major key={major.id} name={major.name} id={major.id}></Major>)}
         </Wrapper>
-        
     )
 }
 
 export const Wrapper = styled.section`
+    margin-top: 120px;
     display:flex;
+    flex-direction: column;
     align-items:center;
     justify-content:center;
     gap:10px;
     width:100%;
-    height: 100vh;
-`;
-
-export const Button = styled.button`
-    width:100px;
-    height: 50px;
-    background-color:red;
-    
+    h1{
+        color:#1E1834;
+    }
 `;

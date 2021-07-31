@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import {Link} from "react-router-dom"
 
-export default function Course({name, id}){
+export default function Major({name, id}){
     
     return (
-        <Link to= {`/options/courses/${id}/tests`}>
+        <Link to={`/options/${id}`}>
             <Button>
                 {name}
             </Button>
@@ -13,7 +13,7 @@ export default function Course({name, id}){
 }
 
 export const Button = styled.button`
-    width:150px;
-    height: 30px;
+    width:100px;
+    height: 50px;
     background-color:#908699;
 `;
