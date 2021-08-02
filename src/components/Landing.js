@@ -8,7 +8,6 @@ export default function Landing(){
     const [majors,setMajors]=useState([])
     useEffect(()=>{
         axios.get(`https://repo-provas-back.herokuapp.com/options/majors`).then(response =>{
-        //axios.get(`https://repo-provas-back.herokuapp.com/test`).then((response)=>{
             setMajors(response.data)
         }).catch(err =>{
             alert(err)
