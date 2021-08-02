@@ -12,15 +12,15 @@ export default function TeacherTests(){
     
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/tests/teacher/${teacherId}`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/tests/teacher/${teacherId}`).then(response =>{
             setTests(response.data)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
-        axios.get(`http://localhost:4000/tests/types`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/tests/types`).then(response =>{
             setTypes(response.data)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
     },[teacherId])
     if(!tests||!types){

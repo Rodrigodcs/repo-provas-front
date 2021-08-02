@@ -11,22 +11,22 @@ export default function CourseTests(){
     const [types,setTypes]= useState()
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/tests/course/${courseId}`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/tests/course/${courseId}`).then(response =>{
             setTests(response.data)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
-        axios.get(`http://localhost:4000/tests/types`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/tests/types`).then(response =>{
             setTypes(response.data)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
     },[courseId])
-    console.log("types",types)
+
     if(!tests ||!types){
         return <Wrapper>CARREGANDO</Wrapper>
     }
-    console.log("test",tests)
+
     return (
         <Wrapper>
             {!tests[0]?

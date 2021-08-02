@@ -19,15 +19,15 @@ export default function Create(){
 
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/options/majors`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/options/majors`).then(response =>{
             setMajors(response.data)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
-        axios.get(`http://localhost:4000/tests/types`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/tests/types`).then(response =>{
             setTypes(response.data)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
     },[])
     
@@ -41,27 +41,27 @@ export default function Create(){
             teacherId:parseInt(teacherId)
         }
 
-        axios.post(`http://localhost:4000/test`,body).then(response =>{
+        axios.post(`https://repo-provas-back.herokuapp.com/test`,body).then(response =>{
             history.push("/")
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
     }
 
     function majorSelected(e){
-        axios.get(`http://localhost:4000/options/majors/${e.target.value}`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/options/majors/${e.target.value}`).then(response =>{
             setCourses(response.data.courses)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
     }
 
     function courseSelected(e){
         setCourseId(e.target.value)
-        axios.get(`http://localhost:4000/options/courses/${e.target.value}`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/options/courses/${e.target.value}`).then(response =>{
             setTeachers(response.data.teachers)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
     }
 

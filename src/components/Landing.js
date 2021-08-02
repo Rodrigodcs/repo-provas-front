@@ -7,11 +7,11 @@ import Major from "./Major.js"
 export default function Landing(){
     const [majors,setMajors]=useState([])
     useEffect(()=>{
-        axios.get(`http://localhost:4000/options/majors`).then(response =>{
+        axios.get(`https://repo-provas-back.herokuapp.com/options/majors`).then(response =>{
         //axios.get(`https://repo-provas-back.herokuapp.com/test`).then((response)=>{
             setMajors(response.data)
         }).catch(err =>{
-            console.log(err)
+            alert(err)
         })
     },[])
 
