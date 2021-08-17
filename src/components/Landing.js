@@ -7,7 +7,7 @@ import Major from "./Major.js"
 export default function Landing(){
     const [majors,setMajors]=useState([])
     useEffect(()=>{
-        axios.get(`https://repo-provas-back.herokuapp.com/options/majors`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}options/majors`).then(response =>{
             setMajors(response.data)
         }).catch(err =>{
             alert(err)

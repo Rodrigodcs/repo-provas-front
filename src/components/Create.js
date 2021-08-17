@@ -19,12 +19,12 @@ export default function Create(){
 
 
     useEffect(()=>{
-        axios.get(`https://repo-provas-back.herokuapp.com/options/majors`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}options/majors`).then(response =>{
             setMajors(response.data)
         }).catch(err =>{
             alert(err)
         })
-        axios.get(`https://repo-provas-back.herokuapp.com/tests/types`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}tests/types`).then(response =>{
             setTypes(response.data)
         }).catch(err =>{
             alert(err)
@@ -41,7 +41,7 @@ export default function Create(){
             teacherId:parseInt(teacherId)
         }
 
-        axios.post(`https://repo-provas-back.herokuapp.com/test`,body).then(response =>{
+        axios.post(`${process.env.REACT_APP_HOST}test`,body).then(response =>{
             history.push("/")
         }).catch(err =>{
             alert(err)
@@ -49,7 +49,7 @@ export default function Create(){
     }
 
     function majorSelected(e){
-        axios.get(`https://repo-provas-back.herokuapp.com/options/majors/${e.target.value}`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}options/majors/${e.target.value}`).then(response =>{
             setCourses(response.data.courses)
         }).catch(err =>{
             alert(err)
@@ -58,7 +58,7 @@ export default function Create(){
 
     function courseSelected(e){
         setCourseId(e.target.value)
-        axios.get(`https://repo-provas-back.herokuapp.com/options/courses/${e.target.value}`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}options/courses/${e.target.value}`).then(response =>{
             setTeachers(response.data.teachers)
         }).catch(err =>{
             alert(err)
@@ -74,6 +74,7 @@ export default function Create(){
             <Tittle>Insira os dados da prova</Tittle>
             <Form onSubmit={sendTest}>
                 <Input type="text" placeholder="nome da prova" value={testName} onChange={e=>setTestName(e.target.value)}></Input>
+                <p>Formato: ano.semestre / Exemplo: 2020.2</p>
                 <Input type="text" placeholder="link do pdf" value={pdfLink} onChange={e=>setPdfLink(e.target.value)}></Input>
                 <h3>Tipo da prova:</h3>
                 <div>
@@ -143,6 +144,9 @@ const Form= styled.form`
     align-items: center;
     justify-content: center;
     gap: 13px;
+    p{
+        margin-top: -13px;
+    }
     div{
         display:flex;
         justify-content: center;

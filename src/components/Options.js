@@ -14,12 +14,12 @@ export default function Options(){
     const [tests,setTests]= useState()
 
     useEffect(()=>{
-        axios.get(`https://repo-provas-back.herokuapp.com/options/majors/${majorId}`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}options/majors/${majorId}`).then(response =>{
             setMajor(response.data)
         }).catch(err =>{
             alert(err)
         })
-        axios.get(`https://repo-provas-back.herokuapp.com/tests`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}tests`).then(response =>{
             const sort = {}
             response.data.forEach(t=>{
                 if(sort[t.teacher.id]){

@@ -12,12 +12,12 @@ export default function TeacherTests(){
     
 
     useEffect(()=>{
-        axios.get(`https://repo-provas-back.herokuapp.com/tests/teacher/${teacherId}`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}tests/teacher/${teacherId}`).then(response =>{
             setTests(response.data)
         }).catch(err =>{
             alert(err)
         })
-        axios.get(`https://repo-provas-back.herokuapp.com/tests/types`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}tests/types`).then(response =>{
             setTypes(response.data)
         }).catch(err =>{
             alert(err)

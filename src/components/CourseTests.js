@@ -5,18 +5,21 @@ import { useEffect, useState } from "react";
 
 import Test from "./Test.js"
 
+//${process.env.REACT_APP_HOST}
+//https://repo-provas-back.herokuapp.com/
+
 export default function CourseTests(){
     const {courseId} = useParams();
     const [tests,setTests]= useState()
     const [types,setTypes]= useState()
 
     useEffect(()=>{
-        axios.get(`https://repo-provas-back.herokuapp.com/tests/course/${courseId}`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}tests/course/${courseId}`).then(response =>{
             setTests(response.data)
         }).catch(err =>{
             alert(err)
         })
-        axios.get(`https://repo-provas-back.herokuapp.com/tests/types`).then(response =>{
+        axios.get(`${process.env.REACT_APP_HOST}tests/types`).then(response =>{
             setTypes(response.data)
         }).catch(err =>{
             alert(err)
