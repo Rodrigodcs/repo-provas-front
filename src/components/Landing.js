@@ -14,7 +14,7 @@ export default function Landing(){
         })
     },[])
 
-    if(!majors){
+    if(majors.length===0){
         return <Wrapper>CARREGANDO</Wrapper>
     }
     return (
